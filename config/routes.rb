@@ -1,6 +1,7 @@
 Nomnivor::Application.routes.draw do
   resource :map, :controller => :map, :only => [:show]
   root :to => 'map#show'
+  resources :restaurants
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
