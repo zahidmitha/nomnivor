@@ -7,5 +7,4 @@ class Restaurant < ActiveRecord::Base
   validates :longitude, :numericality => { :only_float => true }
   validates :latitude, :numericality => { :only_float => true }
 
-
 end
