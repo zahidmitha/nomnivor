@@ -5,7 +5,8 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-
+    @restaurant = Restaurant.create!(params[:restaurant])
+    redirect_to root_url
   end
 
 end

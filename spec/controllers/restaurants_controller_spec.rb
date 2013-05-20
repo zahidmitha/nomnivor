@@ -17,9 +17,9 @@ describe RestaurantsController do
   context "POST create" do
     context "valid attributes" do
 
-      # it "creates a new restaurant" do
-      #   expect {post :create, restaurant}.to change(restaurant, :count).by(1)
-      # end
+      it "creates a new restaurant" do
+        expect {post :create, restaurant}.to change(Restaurant, :count).by(1)
+      end
 
       #     it "returns a successful response" do
       #       post :create, user_hash
