@@ -1,6 +1,7 @@
 class Restaurant < ActiveRecord::Base
 
   attr_accessible :name, :longitude, :latitude, :description
+  has_and_belongs_to_many :diets
 
   validates :name, :longitude, :latitude, :description, :presence => true
 
