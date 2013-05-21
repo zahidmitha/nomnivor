@@ -3,18 +3,17 @@
   <p id="tag-line">Allergy-friendly food search</p>
   <%= image_tag "logo.png",:size => "200x200", :id => "logo" %>
   <p>
-  <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Add Restaurant</a>
-
+  <a href="#add-restaurant-modal" role="button" class="btn btn-primary" data-toggle="modal">Add Restaurant</a>
   </p>
 </div>
 
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="add-restaurant-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
       <%= %>
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">New Restaurant  </h3>
   </div>
-
+  <div class="modal-body">
     <p><%= render "restaurants/form" %></p>
-
+  </div>
 </div>
