@@ -7,12 +7,12 @@ describe RestaurantsController do
 
   # let(:invalid_user_hash) { {:user => {:name => "Blah", :age => 24}}}
 
-  context "GET new" do
-    it "renders the new restaurant form" do
-      get :new
-      response.should render_template(:new)
-    end
-  end
+  # context "GET new" do
+  #   it "renders the new restaurant form" do
+  #     get :new
+  #     response.should render_template(:new)
+  #   end
+  # end
 
   context "POST create" do
     context "valid attributes" do
