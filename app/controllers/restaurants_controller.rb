@@ -1,12 +1,12 @@
 class RestaurantsController < ApplicationController
 
-  def new
-    # @restaurant = Restaurant.new
-  end
-
   def create
-    @restaurant = Restaurant.create!(params[:restaurant])
-    redirect_to root_url
-  end
+    @restaurant = Restaurant.create(params[:restaurant])
 
+    if @restaurant.valid?
+      redirect_to root_url
+    else
+      render :json => { :message => "The information you entered about the restaurant was not correct. Please try again!" }
+    end
+  end
 end
