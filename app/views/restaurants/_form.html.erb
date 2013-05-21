@@ -1,9 +1,19 @@
+<%= form_for @restaurant do |f| %>
+<div class="modal-body">
+  <%= f.label :name %>
+  <%= f.text_field :name %></br>
 
-<%= form_tag("/restaurants", :method => "post") do %>
-  <input class="input-xlarge" type="text" placeholder="Restaurant Name"></br>
-  <textarea class="input-xlarge" rows="4" placeholder="Description"></textarea></br>
-  <input class="input-small" type="text" placeholder="Long">
-  <input class="input-small" type="text" placeholder="Lat">
+  <%= f.label :description %>
+  <%= f.text_field :description %> </br>
+
+  <%= f.label :Latitude %>
+  <%= f.text_field :latitude %> </br></br>
+
+  <%= f.label :Longitude %>
+  <%= f.text_field :longitude %> </br></br>
+</div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+  <%= f.button :Submit, :class => 'btn btn-primary' %>
+  </div>
 <% end %>
-
-
