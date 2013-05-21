@@ -4,16 +4,22 @@
   <%= f.text_field :name %></br>
 
   <%= f.label :description %>
-  <%= f.text_field :description %> </br>
+  <%= f.text_field :description %></br>
 
   <%= f.label :Latitude %>
   <%= f.text_field :latitude %> </br></br>
 
   <%= f.label :Longitude %>
   <%= f.text_field :longitude %> </br></br>
+
+  <% Diet.all.each do |diet| %>
+    <%= check_box_tag "#{diet.id}"  %><br/>
+    <%= label_tag "#{diet.name}" %>
+  <% end %>
+
 </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+<div class="modal-footer">
+   <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
   <%= f.button :Submit, :class => 'btn btn-primary' %>
-  </div>
+</div>
 <% end %>

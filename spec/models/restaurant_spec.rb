@@ -4,6 +4,8 @@ describe Restaurant do
 
   let(:restaurant) {Restaurant.new(:name => "Dorsia", :longitude => "51.5171", :latitude => "-0.1062", :description => "Four year waiting list to get in line for a table." )}
 
+  let(:valid) {{:name => "Dorsia", :longitude => "51.5171", :latitude => "-0.1062", :description => "Four year waiting list to get in line for a table."}}
+
   it 'has a name' do
     restaurant.name.should eq "Dorsia"
   end
@@ -41,4 +43,11 @@ describe Restaurant do
   end
 
   it { should have_and_belong_to_many(:diets) }
+
+  it 'adds that diet to the list of diets' do
+    diet = Diet.create(name: "Halal")
+    rest = Restaurant.create_with_diets(valid, diet.id)
+    rest.diets.should include(diet)
+  end
 end
+
