@@ -25,6 +25,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'shoulda-matchers'
+  gem 'quiet_assets'
 end
 
 gem 'jquery-rails'

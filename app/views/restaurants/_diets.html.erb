@@ -1,4 +1,4 @@
-<% Diet.all.each do |diet| %>
+<% @diets.each do |diet| %>
   <%= check_box_tag "diets[]", diet.id  %><br/>
   <%= label_tag "#{diet.name}" %>
 <% end %>

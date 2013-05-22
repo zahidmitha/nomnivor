@@ -16,7 +16,7 @@ describe RestaurantsController do
       end
       it "has a diet" do
         post :create, restaurant
-       p assigns(:restaurant).diets.should include(diet)
+        assigns(:restaurant).diets.should include(diet)
       end
     end
 
