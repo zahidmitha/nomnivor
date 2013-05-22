@@ -33,7 +33,7 @@ $(document).ready(function() {
         var feature = marker.feature;
         // Create custom popup content
         var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
-             '<h2>' + feature.properties.name + '</h2>' + '</a>' + '<p>' +feature.properties.description + '</p>' + '<p>' + 'Lat/Long' + feature.geometry.coordinates + '</p>';
+             '<div>' + feature.properties.name + '</div>' + '</a>' + '<p>' +feature.properties.description + '</p>' + '<p>' + '<strong>' + 'Lat/Long:' + '</strong>' + " " + feature.geometry.coordinates + '</p>';
 
         // http://leafletjs.com/reference.html#popup
         marker.bindPopup(popupContent,{

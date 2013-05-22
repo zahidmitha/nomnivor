@@ -43,5 +43,16 @@ body { margin:0; padding:0; }
     float: left;
     display: inline;
 
+}
+
+.popup {
+    width: 50px;
+    height: 25px;
+    font-size: 12px;
+}
+
+.popup div {
+    font-size: 15px;
+    font-weight: bold;
 
 }
