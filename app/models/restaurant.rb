@@ -8,11 +8,13 @@ class Restaurant < ActiveRecord::Base
   validates :longitude, :numericality => { :only_float => true }
   validates :latitude, :numericality => { :only_float => true }
 
-
-  def self.create_with_diets(args, args2)
-   restaurant = Restaurant.create(args)
-   p diet = Diet.find(args2)
-   restaurant.diets << diet
-   restaurant
+  private
+  def self.create_with_diets(restaurant, diets)
+    eatery = Restaurant.create(restaurant)
+    diets.each do |id|
+      diet = Diet.find(id)
+      eatery.diets << diet
+    end
+    eatery
   end
 end

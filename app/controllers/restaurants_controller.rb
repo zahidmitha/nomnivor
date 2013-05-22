@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
 
   def create
-    @restaurant = Restaurant.create_with_diets(params[:restaurant], params[:diet])
+    @restaurant = Restaurant.create_with_diets(params[:restaurant], params[:diets])
 
     if @restaurant.valid?
       flash[:notice] = "Restaurant has been added"

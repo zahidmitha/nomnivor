@@ -46,7 +46,7 @@ describe Restaurant do
 
   it 'adds that diet to the list of diets' do
     diet = Diet.create(name: "Halal")
-    rest = Restaurant.create_with_diets(valid, diet.id)
+    rest = Restaurant.create_with_diets(valid, [diet.id])
     rest.diets.should include(diet)
   end
 end

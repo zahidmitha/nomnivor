@@ -12,10 +12,7 @@
   <%= f.label :Longitude %>
   <%= f.text_field :longitude %> </br></br>
 
-  <% Diet.all.each do |diet| %>
-    <%= check_box_tag "#{diet.id}"  %><br/>
-    <%= label_tag "#{diet.name}" %>
-  <% end %>
+  <%= render 'restaurants/diets' %>
 
 </div>
 <div class="modal-footer">
