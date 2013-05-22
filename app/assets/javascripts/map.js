@@ -56,7 +56,7 @@ map.locate();
   map.on('locationfound', function(e) {
     map.setView(e.latlng, 16);
 	});
-  $(".hero-unit").hide('fast');
+  // $(".hero-unit").hide('fast');
 });
 
 
