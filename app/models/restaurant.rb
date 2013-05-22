@@ -10,10 +10,7 @@ class Restaurant < ActiveRecord::Base
 
   def self.create_with_diets(restaurant, diets)
     eatery = Restaurant.create(restaurant)
-    diets.each do |id|
-      diet = Diet.find(id)
-      eatery.diets << diet
-    end
+    eatery.diet_ids = diets
     eatery
   end
 end
