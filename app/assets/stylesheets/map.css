@@ -31,3 +31,17 @@ body { margin:0; padding:0; }
 #map { position:absolute; top:0; bottom:0; width:100%; z-index: -1;}
 
 #add-restaurant-modal { top: 50%; height: 480; margin-top: -220px;}
+
+.restaurant_checkboxes {
+
+    list-style: none;
+
+}
+
+.restaurant_box {
+
+    float: left;
+    display: inline;
+
+
+}

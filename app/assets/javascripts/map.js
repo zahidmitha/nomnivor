@@ -9,6 +9,7 @@ $(document).ready(function() {
 		success: function(data){
 			dataType:'json';
 			$.each(data, function(restaurant, item){
+				console.log(item);
     				addMarker(item);
 			});
 		}
@@ -18,15 +19,31 @@ $(document).ready(function() {
   function addMarker(item) {
 		var geoJson = [{
 	    type: 'Feature',
-	    "geometry": { "type": "Point", "coordinates": [51, 0]},
+	    "geometry": { "type": "Point", "coordinates": [item.latitude, item.longitude]},
 	    "properties": {
-	        "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/3/39/NYC_Top_of_the_Rock_Pano.jpg/640px-NYC_Top_of_the_Rock_Pano.jpg",
-	        "url": "http://en.wikipedia.org/wiki/New_York_City",
-	        "city": "New York City"
+	        "url": "/",
+	        "name": item.name,
+	        "description": item.description
 	    }
+
 	}];
-	console.log(geoJson);
 	map.markerLayer.setGeoJSON(geoJson);
+	map.markerLayer.on('ready', function(e) {
+    this.eachLayer(function(marker) {
+        var feature = marker.feature;
+        // Create custom popup content
+        var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
+             '<h2>' + feature.properties.name + '</h2>' + '</a>' + '<p>' +feature.properties.description + '</p>' + '<p>' + 'Lat/Long' + feature.geometry.coordinates + '</p>';
+
+        // http://leafletjs.com/reference.html#popup
+        marker.bindPopup(popupContent,{
+            closeButton: false,
+            minWidth: 320
+        });
+
+    });
+});
+
 	}
 
 
@@ -38,6 +55,8 @@ map.locate();
 
   map.on('locationfound', function(e) {
     map.setView(e.latlng, 16);
+
+
 
 });
 
