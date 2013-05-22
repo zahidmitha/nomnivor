@@ -1,42 +1,14 @@
-$(document).ready(function(){
+$(document).ready(function() {
+  var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 16);
 
-var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.505, -0.09], 13);
+  $("#find_me").click(function() {
 
-	$.ajax({
-		type: "GET",
-		url: "/restaurants/",
-		data: $(this).serialize(),
-		success: function(data){
-			dataType:'json';
-			$.each(data, function(restaurant, item){
-    				addMarker(item);
-			});
-		}
-	});
+map.locate();
 
-	function addMarker(item) {
-		var geoJson = [{
-	    type: 'Feature',
-	    "geometry": { "type": "Point", "coordinates": [51, 0]},
-	    "properties": {
-	        "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/3/39/NYC_Top_of_the_Rock_Pano.jpg/640px-NYC_Top_of_the_Rock_Pano.jpg",
-	        "url": "http://en.wikipedia.org/wiki/New_York_City",
-	        "city": "New York City"
-	    }
-	}];
-	console.log(geoJson);
-	map.markerLayer.setGeoJSON(geoJson);
-	}
-
-
-//var example = {restaurant1: {name: "Dorsia", long: "12", lat: "15"}, restaurant2: {name: "Texarcana", long: "13", lat: "15" }};
-
- //result = jQuery.parseJSON(example);
-
- // $(".stuff").append("Hello");
-
-          // for (var r in result) {
-
+  map.on('locationfound', function(e) {
+    map.setView(e.latlng, 16);
 
 });
 
+});
+});
