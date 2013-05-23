@@ -9,8 +9,7 @@ $(document).ready(function() {
 		success: function(data){
 			dataType:'json';
 			$.each(data, function(restaurant, item){
-				console.log(item);
-    				addMarker(item);
+    			addMarker(item);
 			});
 		}
 	});
@@ -19,7 +18,7 @@ $(document).ready(function() {
   function addMarker(item) {
 		var geoJson = [{
 	    type: 'Feature',
-	    "geometry": { "type": "Point", "coordinates": [item.latitude, item.longitude]},
+	    "geometry": { "type": "Point", "coordinates": [item.longitude, item.latitude]},
 	    "properties": {
 	        "url": "/",
 	        "name": item.name,
@@ -37,7 +36,7 @@ $(document).ready(function() {
 
         // http://leafletjs.com/reference.html#popup
         marker.bindPopup(popupContent,{
-            closeButton: false,
+            closeButton: true,
             minWidth: 320
         });
 
