@@ -1,0 +1,28 @@
+body { margin:0; padding:0; }
+
+.modal-body {
+    max-height: 425px;
+}
+.popup {
+    width: 50px;
+    height: 25px;
+    font-size: 12px;
+}
+
+.popup div {
+    font-size: 15px;
+    font-weight: bold;
+
+}
+
+.btn  {
+  margin-top: 20px;
+}
+
+.inline-checkboxes li {
+    list-style: none;
+    width: 10px;
+    margin-right: 80px;
+    float: left;
+    display: inline-block;
+}
