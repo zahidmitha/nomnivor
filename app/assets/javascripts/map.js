@@ -6,8 +6,8 @@ $(document).ready(function() {
 		type: "GET",
 		url: "/restaurants/",
 		data: $(this).serialize(),
+		dataType:'json',
 		success: function(data){
-			dataType:'json';
 			$.each(data, function(restaurant, item){
     			addMarker(item);
 			});
