@@ -17,3 +17,7 @@
 body {
   font-family: Nunito, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
+
+.logo {
+	padding-bottom: 20px;
+}

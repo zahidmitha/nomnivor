@@ -1,8 +1,7 @@
 .hero-unit  {
     text-align: center;
-    background-color: #ffffff;
+    background-color: rgba(255,255,255,0.7);
     font-weight: 500;
-    opacity:0.9;
     border-radius: 20px;
     padding: 20px;
 
@@ -15,19 +14,11 @@
     height: 400px;
 }
 
-.btn  {
-  margin-top: 20px;
-}
-
 #tag-line {
   margin-top: 15px;
   font-size: 25px;
 }
 
-#logo {
-}
-
-body { margin:0; padding:0; }
 #map { position:absolute; top:0; bottom:0; width:100%; z-index: -1;}
 
 #add-restaurant-modal { top: 50%; height: 480; margin-top: -220px;}
