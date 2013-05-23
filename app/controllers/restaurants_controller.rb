@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
 
   def create
-    @restaurant = Restaurant.create(params[:restaurant])
+    @restaurant = Restaurant.create_with_diets(params[:restaurant], params[:diets])
 
     if @restaurant.valid?
       flash[:notice] = "Restaurant has been added"
@@ -11,5 +11,8 @@ class RestaurantsController < ApplicationController
     end
   end
 
-
+  def index
+    @restaurants = Restaurant.all
+    render :json => @restaurants
+  end
 end
