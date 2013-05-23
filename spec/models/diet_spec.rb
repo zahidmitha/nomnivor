@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Diet do
   let(:diet) {Diet.create(name: "halal")}
-  context '#new' do
+  context '.new' do
     it 'should have a name' do
       diet.name.should eq "halal"
     end

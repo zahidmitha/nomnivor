@@ -24,10 +24,19 @@
   font-size: 25px;
 }
 
-#logo {
+#checkboxes {
+    list-style: none;
+    width: 10px;
+    margin-right: 80px;
+    float: left;
+    display: inline-block;
 }
 
 body { margin:0; padding:0; }
 #map { position:absolute; top:0; bottom:0; width:100%; z-index: -1;}
 
 #add-restaurant-modal { top: 50%; height: 480; margin-top: -220px;}
+
+.modal-body {
+    max-height: 425px;
+}

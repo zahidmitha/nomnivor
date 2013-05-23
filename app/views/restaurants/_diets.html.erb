@@ -1,0 +1,8 @@
+<ul>
+<% @diets.each do |diet| %>
+  <li id="checkboxes">
+    <%= check_box_tag "diets[]", diet.id  %><br/>
+    <%= label_tag "#{diet.name}" %>
+  </li>
+<% end %>
+</ul>
