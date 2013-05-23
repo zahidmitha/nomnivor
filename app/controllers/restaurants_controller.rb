@@ -9,5 +9,10 @@ class RestaurantsController < ApplicationController
     else
       render :json => { :message => "The information you entered about the restaurant was not correct. Please try again!" }
     end
+
+    def index
+      @restaurants = Restaurant.all
+      render :json => @restaurants
+    end
   end
 end
