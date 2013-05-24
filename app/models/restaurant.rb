@@ -13,4 +13,14 @@ class Restaurant < ActiveRecord::Base
     eatery.diet_ids = diets
     eatery
   end
+
+
+  def self.find_by_diet_ids(*diet_ids)
+    restaurants = []
+     Restaurant.all.collect do |restaurant|
+      restaurant.diet_ids.include? diet_ids
+        restaurants << restaurant
+    end
+    restaurants
+  end
 end

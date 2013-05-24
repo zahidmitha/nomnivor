@@ -49,5 +49,14 @@ describe Restaurant do
     rest = Restaurant.create_with_diets(valid, [diet.id])
     rest.diets.should include(diet)
   end
+  context 'given several diet ids' do
+    it 'returns all its restaurants' do
+      diet = Diet.create(name: "Halal")
+      diet1 = Diet.create(name: "Kosher")
+      rest = Restaurant.create_with_diets(valid, [diet.id, diet1.id])
+      rest1 = Restaurant.create_with_diets(valid, [diet.id, diet1.id])
+      Restaurant.find_by_diet_ids(diet.id, diet1.id).should include(rest,rest1)
+    end
+  end
 end
 
