@@ -1,4 +1,3 @@
-
 <div class="hero-unit">
   <button class="close">&times;</button>
   <h1 class="logo"><%= image_tag "logo_400.png", :id => "logo", :alt => "Nomnivor" %></h1>
@@ -7,6 +6,12 @@
   <a href="#add-restaurant-modal" role="button" class="btn btn-primary btn-large" data-toggle="modal">Add Restaurant</a>
   <a role="button" id="find_me" class="btn btn-primary btn-large">Find Me</a>
   </p>
+<%= form_tag("/restaurants", :method => "get", :class => "diet-filter") do %>
+  <select name="diets[]" class="multiselect" multiple="multiple">
+  <%= options_from_collection_for_select(Diet.all, :id, :name) %>
+  <%= submit_tag("Find restaurants") %>
+  </select>
+<% end %>
 </div>
 
 <div id="add-restaurant-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

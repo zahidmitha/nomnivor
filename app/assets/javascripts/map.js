@@ -1,18 +1,33 @@
 $(document).ready(function() {
+
+
+
   var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 16);
 
+ //  $.ajax({
+	// 	type: "GET",
+	// 	url: "/restaurants/",
+	// 	data: $(this).serialize(),
+	// 	success: function(data){
+	// 		$.each(data, function(index, item){
+ //    			addMarker(item);
+	// 		});
+	// 	}
+	// });
 
-  $.ajax({
-		type: "GET",
-		url: "/restaurants/",
-		data: $(this).serialize(),
-		dataType:'json',
-		success: function(data){
-			$.each(data, function(restaurant, item){
-    			addMarker(item);
-			});
-		}
-	});
+  $(".diet-filter").submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        type: "GET",
+        url: "/restaurants/",
+        data: $(this).serialize(),
+        success: function(data){
+          $.each(data, function(index, item) {
+                addMarker(item);
+            });
+          }
+        });
+  });
 
 
   function addMarker(item) {
@@ -26,13 +41,14 @@ $(document).ready(function() {
 	    }
 
 	}];
+
 	map.markerLayer.setGeoJSON(geoJson);
 	map.markerLayer.on('ready', function(e) {
     this.eachLayer(function(marker) {
         var feature = marker.feature;
         // Create custom popup content
         var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
-             '<div>' + feature.properties.name + '</div>' + '</a>' + '<p>' +feature.properties.description + '</p>' + '<p>' + '<strong>' + 'Lat/Long:' + '</strong>' + " " + feature.geometry.coordinates + '</p>';
+             '<div>' + '</div>' + '</a>' + '<p>' + '</p>' + '<p>' + '<strong>' + 'Lat/Long:' + '</strong>' + " " + feature.geometry.coordinates + '</p>';
 
         // http://leafletjs.com/reference.html#popup
         marker.bindPopup(popupContent,{
@@ -41,26 +57,51 @@ $(document).ready(function() {
         });
 
     });
+
 });
+
 
 	}
 
 
 
-
-  $("#find_me").click(function() {
+$("#find_me").click(function() {
 
 map.locate();
 
   map.on('locationfound', function(e) {
     map.setView(e.latlng, 16);
 	});
-  $(".hero-unit").hide('fast');
+
+
+    $(".hero-unit").hide('fast');
 });
 
 
   $(".close").click(function() {
   	$(".hero-unit").hide('fast');
+  });
+
+
+$('.multiselect').multiselect({
+      buttonClass: 'btn',
+      buttonWidth: 'auto',
+      buttonText: function(options) {
+        if (options.length == 0) {
+                return 'None selected <b class="caret"></b>';
+            }
+            else if (options.length > 6) {
+                return options.length + ' selected  <b class="caret"></b>';
+            }
+            else {
+                var selected = '';
+                options.each(function() {
+            selected += $(this).text() + ', ';
+                });
+
+          return selected.substr(0, selected.length -2) + ' <b class="caret"></b>';
+        }
+      },
   });
 
 });

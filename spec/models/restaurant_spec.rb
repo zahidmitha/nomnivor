@@ -50,12 +50,17 @@ describe Restaurant do
     rest.diets.should include(diet)
   end
   context 'given several diet ids' do
-    it 'returns all its restaurants' do
+    it 'returns all its restaurants associated' do
       diet = Diet.create(name: "Halal")
       diet1 = Diet.create(name: "Kosher")
-      rest = Restaurant.create_with_diets(valid, [diet.id, diet1.id])
+      rest = Restaurant.create_with_diets(valid, [diet.id])
       rest1 = Restaurant.create_with_diets(valid, [diet.id, diet1.id])
       Restaurant.find_by_diet_ids(diet.id, diet1.id).should include(rest,rest1)
+    end
+    it 'doesn\t return restaurants that are not associated' do
+      rest = restaurant.save
+      diet = Diet.create(name: "Halal")
+      Restaurant.find_by_diet_ids(diet.id).should_not include(rest)
     end
   end
 end
