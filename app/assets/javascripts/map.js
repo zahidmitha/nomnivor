@@ -63,4 +63,23 @@ map.locate();
   	$(".hero-unit").hide('fast');
   });
 
+ $(".navbar-search").submit(function(e) {
+	  e.preventDefault();
+	  $.ajax({
+	  	type: 'GET',
+	  	url: '/locations/',
+	  	data: {"address" : $("#search_term").val()},
+	  	dataType: 'json',
+	  	success: function(data){
+	  		console.log(data);
+	  	// 	map.locate();
+	  	// 	map.on('locationfound', function(data) {
+	   //  	map.setView([data.latitude, data.longitude], 16);
+				// });
+	  	// 	$(".hero-unit").hide('fast');
+	  	}
+	  });
+	  return false;
+	});
+
 });

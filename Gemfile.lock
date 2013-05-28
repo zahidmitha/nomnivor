@@ -51,6 +51,7 @@ GEM
       multi_json (~> 1.0)
     ffi (1.8.1)
     formatador (0.2.4)
+    geocoder (1.1.8)
     guard (1.8.0)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
@@ -160,6 +161,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
+  geocoder
   guard-rspec
   jquery-rails
   pg

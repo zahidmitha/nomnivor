@@ -13,4 +13,5 @@ class Restaurant < ActiveRecord::Base
     eatery.diet_ids = diets
     eatery
   end
+
 end
