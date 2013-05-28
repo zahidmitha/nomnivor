@@ -1,17 +1,19 @@
-
+<div id="names">
+</div>
 
 <%= form_for @restaurant do |f| %>
+
   <%= f.label :name %>
-  <%= f.text_field :name %></br>
+  <%= f.text_field :name, id: "name_auto_complete", autocomplete: "off" %></br>
 
   <%= f.label :description %>
   <%= f.text_field :description %></br>
 
   <%= f.label :Latitude %>
-  <%= f.text_field :latitude %> </br></br>
+  <%= f.text_field :latitude, id: "latitude-field"%></br>
 
   <%= f.label :Longitude %>
-  <%= f.text_field :longitude %> </br></br>
+  <%= f.text_field :longitude, id: "longitude-field"%></br>
 
   <%= render 'restaurants/diets' %>
 
@@ -21,3 +23,4 @@
   <%= f.button :Submit, :class => 'btn btn-primary' %>
 </div>
 <% end %>
+

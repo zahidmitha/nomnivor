@@ -1,5 +1,7 @@
 $(document).ready(function() {
   var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 16);
+// current_lng = "51.5258872476589"
+// current_lat = "-0.08416957473754883"
 
 
   $.ajax({
@@ -42,10 +44,48 @@ $(document).ready(function() {
 
     });
 });
+}
 
-	}
 
 
+
+
+clientid = "F2TFZIIG0IVCY4UU3XZPMMK0YG5XKL5LDPSGWO3KRZWUD2GT"
+clientsec = "EKTERA4XDUW5M1WLU4NT2V3ARPAQTHL4P1AENIHIZ1ZJHDVJ"
+
+current_latlng = [map.getCenter().lat,map.getCenter().lng];
+var string = String(current_latlng)
+$('#name_auto_complete').keyup(alert(string));
+// $('#name_auto_complete').keydown(function() {locate()});
+$('#name_auto_complete').keyup(function() {callFoursquareForTypeahead()});
+
+// function locate() {
+//   var current_latlng = [map.getCenter().lat,map.getCenter().lng];
+// };
+
+function callFoursquareForTypeahead() {
+    var inputQuery = $('#name_auto_complete').val();
+        $('#name_auto_complete').typeahead({
+            minLength: 3,
+            source: function(query, process) {
+                var urlString = "https://api.foursquare.com/v2/venues/suggestCompletion?ll="+string+"&query=&client_id=" + clientid +"&client_secret="+clientsec;
+                return $.get(urlString, {query: $('#name_auto_complete').val()},
+                    function(json) {
+                        venueNames = [];
+                        $.each(json.response.minivenues, function(index,value) {
+                            venueNames.push(value.name + " (" + value.location.address + ")");
+                        });
+                        return process(venueNames);
+                    }
+            );
+        }
+    });
+}
+
+map.getCenter().lat
+
+
+// $('#name_auto_complete').typeahead()
 
 
   $("#find_me").click(function() {
@@ -56,6 +96,7 @@ map.locate();
     map.setView(e.latlng, 16);
 	});
   $(".hero-unit").hide('fast');
+  map.center
 });
 
 
