@@ -3,18 +3,30 @@ $(document).ready(function() {
 
   var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 16);
 
-  // $.ajax({
-  //   type: "GET",
-  //   url: "/restaurants/",
-  //   data: $(this).serialize(),
-  //   success: function(data){
-  //     $.each(data, function(index, item){
-  //       addMarker(item);
-  //     });
-  //     ;
-  //   }
+  $.ajax({
+    type: "GET",
+    url: "/restaurants/",
+    data: $(this).serialize(),
+    success: function(data){
+      var collection = createGeoJsonCollection(data);
+             group.clearLayers();
+             group.addData(collection);
 
-  // });
+      ;}
+
+  });
+
+
+var group = L.geoJson(null, {
+    style: null,
+    onEachFeature: function (feature, layer) {
+         layer.bindPopup("<p>"+"<strong>"+feature.properties.title+"</strong>"+"</p>" +
+                        "<p>"+feature.properties.description+"</p>");
+     }
+}).addTo(map);
+
+
+
 
   $(".diet-filter").submit(function(e){
       e.preventDefault();
@@ -23,45 +35,28 @@ $(document).ready(function() {
         url: "/restaurants/",
         data: $(this).serialize(),
         success: function(data){
-            var collection = createGeoJsonCollection(data);
-            L.mapbox.markerLayer(collection).addTo(map);
+          var collection = createGeoJsonCollection(data);
+             group.clearLayers();
+             group.addData(collection);
 
           }
       });
 
   });
 
+
+
   function createGeoJsonCollection(array){
       var json_array = []
       $.each(array, function(index, element){
           var feature = {type: "Feature",
-                      geometry: {
-                      type: "Point",
-                      coordinates: [element.latitude, element.longitude]
-                       },
-                  properties: { "title": element.name, "description": element.description}}
+          geometry: {type: "Point", coordinates: [element.latitude, element.longitude]},
+          properties: { "title": element.name, "description": element.description}}
 
-              json_array.push(feature);
+          json_array.push(feature);
       });
           return json_array;
   }
-
-
-  //   function createGeo(item) {
-  // 		var geoJson = {
-  // 	    "type": "Feature",
-  // 	    "geometry": { "type": "Point", "coordinates": [item.latitude, item.longitude]},
-  // 	    "properties": {
-  // 	        "title": item.name,
-  // 	        "description": item.description
-  // 	    }
-  // 	 };
-  // //    map.markerLayer.setGeoJSON(geoJson);
-  // //    // return geoJson;
-  // // //popop code goes here
-
-  // }
-
 
 
 
@@ -105,19 +100,4 @@ $('.multiselect').multiselect({
   });
 
 });
-  // map.markerLayer.on('ready', function(e) {
- //    this.eachLayer(function(marker) {
- //        var feature = marker.feature;
- //        // Create custom popup content
- //        var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
- //             '<div>' + '</div>' + '</a>' + '<p>' +feature.properties.title + '</p>' + feature.properties.description +'<p>' + '<strong>' + 'Lat/Long:' + '</strong>' + " " + feature.geometry.coordinates + '</p>';
 
- //        // http://leafletjs.com/reference.html#popup
- //        marker.bindPopup(popupContent,{
- //            closeButton: true,
- //            minWidth: 320
- //        });
-
- //    });
-
- //  });
