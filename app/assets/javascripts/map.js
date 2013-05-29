@@ -15,6 +15,7 @@ $(document).ready(function() {
   });
 
   function addMarker(item) {
+
     var geoJson = [{
       type: 'Feature',
       "geometry": { "type": "Point", "coordinates": [item.longitude, item.latitude]},
@@ -27,6 +28,7 @@ $(document).ready(function() {
     map.markerLayer.setGeoJSON(geoJson);
     map.markerLayer.on('ready', function(e) {
       this.eachLayer(function(marker) {
+
         var feature = marker.feature;
         // Create custom popup content
         var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' + '<div>' + feature.properties.name + '</div>' + '</a>' + '<p>' +feature.properties.description + '</p>' + '<p>' + '<strong>' + 'Lat/Long:' + '</strong>' + " " + feature.geometry.coordinates + '</p>';
