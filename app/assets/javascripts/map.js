@@ -61,13 +61,17 @@ function locate() {
 };
 
 function callFoursquareForTypeahead() {
-
-
-    var inputQuery = $('#name_auto_complete').val();
+    // var inputQuery = $('#name_auto_complete').val();
         $('#name_auto_complete').typeahead({
             minLength: 3,
             source: function(query, process) {
-                var urlString = "https://api.foursquare.com/v2/venues/suggestCompletion?ll="+locate()+"&client_id=" + clientid +"&client_secret="+clientsec;
+                foursquareQuery(query, process);
+        }
+    });
+}
+
+function foursquareQuery(query, process) {
+var urlString = "https://api.foursquare.com/v2/venues/suggestCompletion?ll="+locate()+"&client_id=" + clientid +"&client_secret="+clientsec;
                 return $.get(urlString, {query: $('#name_auto_complete').val()},
                     function(json) {
                         venueNames = [];
@@ -78,9 +82,8 @@ function callFoursquareForTypeahead() {
 
                     }
             );
-        }
-    });
 }
+
 
 map.getCenter().lat
 
