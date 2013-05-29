@@ -53,22 +53,23 @@ $(document).ready(function() {
 clientid = "F2TFZIIG0IVCY4UU3XZPMMK0YG5XKL5LDPSGWO3KRZWUD2GT"
 clientsec = "EKTERA4XDUW5M1WLU4NT2V3ARPAQTHL4P1AENIHIZ1ZJHDVJ"
 
-current_latlng = [map.getCenter().lat,map.getCenter().lng];
-var string = String(current_latlng)
-$('#name_auto_complete').keyup(alert(string));
-// $('#name_auto_complete').keydown(function() {locate()});
+
 $('#name_auto_complete').keyup(function() {callFoursquareForTypeahead()});
 
-// function locate() {
-//   var current_latlng = [map.getCenter().lat,map.getCenter().lng];
-// };
+
+function locate() {
+  var current_latlng = [map.getCenter().lat,map.getCenter().lng];
+  return String(current_latlng);
+};
 
 function callFoursquareForTypeahead() {
+
+
     var inputQuery = $('#name_auto_complete').val();
         $('#name_auto_complete').typeahead({
             minLength: 3,
             source: function(query, process) {
-                var urlString = "https://api.foursquare.com/v2/venues/suggestCompletion?ll="+string+"&query=&client_id=" + clientid +"&client_secret="+clientsec;
+                var urlString = "https://api.foursquare.com/v2/venues/suggestCompletion?ll="+locate()+"&client_id=" + clientid +"&client_secret="+clientsec;
                 return $.get(urlString, {query: $('#name_auto_complete').val()},
                     function(json) {
                         venueNames = [];
@@ -76,6 +77,7 @@ function callFoursquareForTypeahead() {
                             venueNames.push(value.name + " (" + value.location.address + ")");
                         });
                         return process(venueNames);
+
                     }
             );
         }
