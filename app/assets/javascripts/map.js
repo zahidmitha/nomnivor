@@ -21,7 +21,7 @@ $(document).ready(function() {
 	    "geometry": { "type": "Point", "coordinates": [item.longitude, item.latitude]},
 	    "properties": {
 	        "url": "/",
-	        "name": item.name,
+	        "item": item.name,
 	        "description": item.description
 	    }
 
