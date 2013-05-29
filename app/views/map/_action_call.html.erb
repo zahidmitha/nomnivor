@@ -2,10 +2,14 @@
 <div class="hero-unit">
   <button class="close">&times;</button>
   <h1 class="logo"><%= image_tag "logo_400.png", :id => "logo", :alt => "Nomnivor" %></h1>
-  <p id="tag-line">Eat out at the best diet-friendly and allergy-friendly fooderies</p>
+  <p id="tag-line">Find restaurants that match your diet. Eat better. </p>
   <p>
   <a href="#add-restaurant-modal" role="button" class="btn btn-primary btn-large" data-toggle="modal">Add Restaurant</a>
   <a role="button" id="find_me" class="btn btn-primary btn-large">Find Me</a>
+  <form class="navbar-search">
+    <input type="text" class="search-query" method="get" placeholder="Where do you want to go?" id="search_term">
+    <button type="submit" class="btn" id="geolocate">Submit</button>
+  </form>
   </p>
 </div>
 

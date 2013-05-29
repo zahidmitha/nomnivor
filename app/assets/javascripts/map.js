@@ -1,5 +1,7 @@
 $(document).ready(function() {
   var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 16);
+  var geolocate = document.getElementById('geolocate');
+
 
 
   $.ajax({
@@ -63,4 +65,20 @@ map.locate();
   	$(".hero-unit").hide('fast');
   });
 
+ $(".navbar-search").submit(function(e) {
+
+	  e.preventDefault();
+	  $.ajax({
+	  	type: "GET",
+	  	url: "/locations/",
+	  	data: {"address": $("#search_term").val()},
+	  	success: function(data){
+      console.log(data.address);
+      map.setView([data.latitude, data.longitude], 16);
+	  		$(".hero-unit").hide('fast');
+	  	}
+
+	  });
+
+	});
 });
