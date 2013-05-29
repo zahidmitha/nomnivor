@@ -17,35 +17,34 @@ $(document).ready(function() {
   // });
 
   $(".diet-filter").submit(function(e){
-
       e.preventDefault();
       $.ajax({
         type: "GET",
         url: "/restaurants/",
         data: $(this).serialize(),
         success: function(data){
-            var jsonarray = []
-            var markerLayer = L.mapbox.markerLayer(jsonarray).addTo(map);
-            $.each(data, function(index, restaurant) {
-
-            // a simple GeoJSON featureset with a single point
-            // with no properties
-            var geo = markerLayer.setGeoJSON({
-                type: "FeatureCollection",
-                features: [{type: "Feature",
-                    geometry: {
-                    type: "Point",
-                    coordinates: [restaurant.latitude, restaurant.longitude]
-                     },
-                properties: { "title": restaurant.name, "description": restaurant.description}}]
-            });
-             jsonarray.push(geo);
-            });
+            var collection = createGeoJsonCollection(data);
+            L.mapbox.markerLayer(collection).addTo(map);
 
           }
       });
 
   });
+
+  function createGeoJsonCollection(array){
+      var json_array = []
+      $.each(array, function(index, element){
+          var feature = {type: "Feature",
+                      geometry: {
+                      type: "Point",
+                      coordinates: [element.latitude, element.longitude]
+                       },
+                  properties: { "title": element.name, "description": element.description}}
+
+              json_array.push(feature);
+      });
+          return json_array;
+  }
 
 
   //   function createGeo(item) {
