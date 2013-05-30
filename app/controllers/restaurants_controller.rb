@@ -12,11 +12,10 @@ class RestaurantsController < ApplicationController
 
   def index
     if params.has_key?(:diets)
-      @restaurants = Restaurant.find_by_diet_ids(params[:diets])
-      render :json => @restaurants
+       @restaurants = Restaurant.find_by_diet_ids(params[:diets])
     else
       @restaurants = Restaurant.all
-      render :json => @restaurants
     end
+      render :json => @restaurants
   end
 end
