@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-
+  var venues = [];
   var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 16);
 
   $.ajax({
@@ -93,22 +93,27 @@ $(document).ready(function() {
     $('#name_auto_complete').typeahead({
         minLength: 3,
         source: function(query, process) {
-            foursquareQuery(query, process);
+            foursquareQuery(query);
+            process(venueNames());
         }
     });
   }
 
-  function foursquareQuery(query, process) {
-    var urlString = "https://api.foursquare.com/v2/venues/suggestCompletion?ll="+locate()+"&client_id=" + clientid +"&client_secret="+clientsec;
-    return $.get(urlString, {query: $('#name_auto_complete').val()},
-      function(json) {
-        var venueNames = [];
-        $.each(json.response.minivenues, function(index,value) {
-            venueNames.push(value.name + " (" + value.location.address + ")");
-        });
-        return process(venueNames);
-      });
+  function venueNames() {
+    return _.map(venues, function(venue) { return venue.name + " (" + venue.location.address + ")" });
   }
+
+  function venuesFound(minivenues) {
+    venues = minivenues;
+  }
+
+  function foursquareQuery(query) {
+    var urlString = "https://api.foursquare.com/v2/venues/suggestCompletion?ll="+locate()+"&client_id=" + clientid +"&client_secret="+clientsec;
+    $.get(urlString, {query: $('#name_auto_complete').val()}, function(json) {
+      venuesFound(json.response.minivenues)
+    });
+  };
+
 
   $("#find_me").click(function() {
     map.locate();
