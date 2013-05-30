@@ -14,4 +14,11 @@ class Restaurant < ActiveRecord::Base
     eatery
   end
 
+  def self.find_by_diet_ids(*diet_ids)
+    Restaurant.joins(:diets).where("diets.id IN (#{diet_ids.join(',')})")
+  end
 end
+
+# eqivalent SQL for above AR method
+# SELECT "restaurants".* FROM "restaurants" INNER JOIN "diets_restaurants" ON "diets_restaurants"."restaurant_id" = "restaurants"."id" INNER JOIN "diets" ON "diets"."id" = "diets_restaurants"."diet_id" WHERE (diets.id IN (1,2,3))
+
