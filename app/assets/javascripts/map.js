@@ -41,8 +41,10 @@ $(document).ready(function() {
       });
     });
   }
-
-
+// added from zahid
+  var input = document.getElementById('search_term');
+  autocomplete = new google.maps.places.Autocomplete(input);
+//
 
 
   var group = L.geoJson(null, {
@@ -80,13 +82,10 @@ $(document).ready(function() {
     return json_array;
   };
 
-
   var clientid = "F2TFZIIG0IVCY4UU3XZPMMK0YG5XKL5LDPSGWO3KRZWUD2GT";
   var clientsec = "EKTERA4XDUW5M1WLU4NT2V3ARPAQTHL4P1AENIHIZ1ZJHDVJ";
 
-
-
-  $('#name_auto_complete').keyup(function() {callFoursquareForTypeahead();
+ $('#name_auto_complete').keyup(function() {callFoursquareForTypeahead();
   });
 
   $('#name_auto_complete').blur(function() {
@@ -136,7 +135,7 @@ $(document).ready(function() {
     })
   }
 
-  $("#find_me").click(function() {
+  $(".find_me").click(function() {
     map.locate();
     map.on('locationfound', function(e) {
       map.setView(e.latlng, 16);
@@ -181,7 +180,6 @@ $(document).ready(function() {
       url: "/locations/",
       data: {"address": $("#search_term").val()},
       success: function(data){
-        console.log(data.address);
         map.setView([data.latitude, data.longitude], 16);
         $(".hero-unit").hide('fast');
         }
