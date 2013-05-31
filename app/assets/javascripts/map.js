@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-  // var venues = [];
   var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 16);
 
   getRestaurants();
@@ -43,13 +42,6 @@ $(document).ready(function() {
   }
 
 
-  // var group = L.geoJson(null, {
-  //   style: null,
-  //   onEachFeature: function (feature, layer) {
-  //       layer.bindPopup("<p>"+"<strong>"+feature.properties.title+"</strong>"+"</p>" + "<p>"+feature.properties.description+"</p>");
-  //       }
-  //   }).addTo(map);
-
 
   $(".diet-filter").submit(function(e){
     e.preventDefault();
@@ -65,23 +57,6 @@ $(document).ready(function() {
         }
       });
     });
-  // };
-
-
-
-  // function createGeoJsonCollection(array){
-  //   json_array = []
-  //   $.each(array, function(index, element){
-  //     var feature = {type: "Feature",
-  //       geometry: {type: "Point", coordinates: [element.longitude, element.latitude]},
-  //       properties: { "title": element.name, "description": element.description}}
-  //       json_array.push(feature);
-  //     });
-  //   return json_array;
-  // };
-
-
-
 
 
 
@@ -93,67 +68,13 @@ $(document).ready(function() {
           properties: {
             "title": element.name,
             "description": element.description,
-            "diets" : element.diets }}
-          });
+            "diets" : element.diets
+          }}
+          json_array.push(feature);
+       });
+       return json_array;
     }
 
-  // var clientid = "F2TFZIIG0IVCY4UU3XZPMMK0YG5XKL5LDPSGWO3KRZWUD2GT";
-  // var clientsec = "EKTERA4XDUW5M1WLU4NT2V3ARPAQTHL4P1AENIHIZ1ZJHDVJ";
-
-
-
-
-  // $('#name_auto_complete').keyup(function() {callFoursquareForTypeahead();
-  // });
-
-  // $('#name_auto_complete').blur(function() {
-  //   fillLatLng();
-  // });
-
-
-  // function callFoursquareForTypeahead() {
-  //   $('#name_auto_complete').typeahead({
-  //       minLength: 3,
-  //       source: function(query, process) {
-  //           foursquareQuery(query);
-  //           process(venueNames());
-  //       }
-  //   });
-  // }
-
-  // function venueNames() {
-  //   return _.map(venues, function(venue) { return displayName(venue) });
-  // }
-
-  // function displayName(venue) {
-  //   return venue.name + " (" + venue.location.address + ")"
-  // }
-
-
-  // function venuesFound(minivenues) {
-  //   venues = minivenues;
-  // }
-
-  // function foursquareQuery(query) {
-  //   var urlString = "https://api.foursquare.com/v2/venues/suggestCompletion?ll="+locate()+"&client_id=" + clientid +"&client_secret="+clientsec;
-  //   $.get(urlString, {query: $('#name_auto_complete').val()}, function(json) {
-  //     venuesFound(json.response.minivenues)
-  //   });
-  // };
-
-  // function fillLatLng() {
-  //   venueLatLng(venues);
-  // }
-
-
-  // function venueLatLng(venues) {
-  //   _.each(venues, function(venue){
-  //     if (displayName(venue) == $('#name_auto_complete').val()) {
-  //       $("#latitude-field").val(venue.location.lat);
-  //       $("#longitude-field").val(venue.location.lng);
-  //     };
-  //   })
-  // }
 
 
   $("#find_me").click(function() {
@@ -165,10 +86,7 @@ $(document).ready(function() {
     map.center
   });
 
-  function locate() {
-    var current_latlng = [map.getCenter().lat,map.getCenter().lng];
-    return String(current_latlng);
-  };
+
 
   $(".close").click(function() {
     $(".hero-unit").hide('fast');

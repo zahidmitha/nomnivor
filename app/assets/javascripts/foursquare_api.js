@@ -43,6 +43,11 @@ $(document).ready(function() {
     });
   };
 
+  function locate() {
+    var current_latlng = [map.getCenter().lat,map.getCenter().lng];
+    return String(current_latlng);
+  };
+
   function fillLatLng() {
     venueLatLng(venues);
   }
