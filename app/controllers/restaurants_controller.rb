@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
 
   def create
-    @restaurant = Restaurant.create_with_diets(params[:restaurant], params[:diets])
+   @restaurant = Restaurant.create_with_diets(params[:restaurant], params[:diets])
     if @restaurant.valid?
       flash[:notice] = "Restaurant has been added"
       redirect_to root_url
@@ -12,11 +12,10 @@ class RestaurantsController < ApplicationController
 
   def index
     if params.has_key?(:diets)
-      @restaurants = Restaurant.find_by_diet_ids(params[:diets])
-      render :json => @restaurants
+       @restaurants = Restaurant.find_by_diet_ids(params[:diets])
     else
       @restaurants = Restaurant.all
-      render :json => @restaurants
     end
+      render :json => @restaurants
   end
 end

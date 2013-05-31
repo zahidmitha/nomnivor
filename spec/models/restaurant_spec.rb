@@ -6,6 +6,9 @@ describe Restaurant do
 
   let(:valid) {{:name => "Dorsia", :longitude => "51.5171", :latitude => "-0.1062", :description => "Four year waiting list to get in line for a table."}}
 
+  let(:valid2) {{:name => "CrazyBurger", :longitude => "51.5171", :latitude => "-0.1062", :description => "Now serving the macHorse meal"}}
+
+
   it 'has a name' do
     restaurant.name.should eq "Dorsia"
   end
@@ -31,8 +34,8 @@ describe Restaurant do
 
   context "latitude/longitude" do
     it 'converts an integer into a float' do
-      r = Restaurant.new(:longitude => 1)
-      r.longitude.should eq 1.0
+      restaurant = Restaurant.new(:longitude => 1)
+      restaurant.longitude.should eq 1.0
     end
 
     it "validates negative numbers for longitude" do
@@ -50,7 +53,7 @@ describe Restaurant do
     rest.diets.should include(diet)
   end
   context 'given several diet ids' do
-    it 'returns all its restaurants associated' do
+    it 'returns all restaurants associated' do
       diet = Diet.create(name: "Halal")
       diet1 = Diet.create(name: "Kosher")
       rest = Restaurant.create_with_diets(valid, [diet.id])
@@ -62,6 +65,7 @@ describe Restaurant do
       diet = Diet.create(name: "Halal")
       Restaurant.find_by_diet_ids(diet.id).should_not include(rest)
     end
+
   end
 end
 
