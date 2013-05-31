@@ -3,12 +3,9 @@
   <h1 class="logo"><%= image_tag "logo_400.png", :id => "logo", :alt => "Nomnivor" %></h1>
   <p id="tag-line">Find restaurants that match your diet. Eat better. </p>
   <p>
-  <a href="#add-restaurant-modal" role="button" class="btn btn-primary btn-large" data-toggle="modal">Add Restaurant</a>
-  <a role="button" id="find_me" class="btn btn-primary btn-large">Find Me</a>
-  <form class="navbar-search">
-    <input type="text" class="search-query" method="get" placeholder="Where do you want to go?" id="search_term">
-    <button type="submit" class="btn" id="geolocate">Submit</button>
-  </form>
+  <div class="hero-btn"><a href="#add-restaurant-modal" role="button" class="btn btn-primary btn-large" data-toggle="modal">Add Restaurant</a>
+  <a role="button" id="find_me" class="btn btn-primary btn-large">Find Me</a></div>
+  <p><%= render "search" %></p>
   </p>
 <%= form_tag("/restaurants", :method => "get", :class => "diet-filter") do %>
   <select name="diets[]" class="multiselect" multiple="multiple">
@@ -19,7 +16,7 @@
 </div>
 
 <div id="add-restaurant-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
+ <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
     <h3 id="myModalLabel">New Restaurant  </h3>
   </div>

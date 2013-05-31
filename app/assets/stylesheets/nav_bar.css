@@ -1,0 +1,46 @@
+
+
+
+
+.top-bar {
+  list-style: none;
+  margin: 0 0 0px 0;
+  background-color: rgba(0,0,0,0.6);
+  display: block;
+  width: 100%;
+}
+
+.navigate {
+  display: inline-block;
+  margin: 0 10px;
+  color: white;
+}
+
+.navigate:hover {
+  color: #FF840D;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navigate a:hover {
+  color: #FF840D;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navigate a {
+  text-decoration: none;
+  color: whiteSmoke;
+  padding: 10px;
+  display: block;
+  opacity:1.0
+}
+
+#title {
+  font: 900 14px/22px "Arial", Helvetica, sans-serif;
+}
+
+.navbar-search {
+
+}
+

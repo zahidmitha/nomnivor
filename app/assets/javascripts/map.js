@@ -67,8 +67,6 @@ $(document).ready(function() {
     });
   });
 
-
-
   function createGeoJsonCollection(array){
     json_array = []
     $.each(array, function(index, element){
@@ -132,8 +130,19 @@ $(document).ready(function() {
       if (displayName(venue) == $('#name_auto_complete').val()) {
         $("#latitude-field").val(venue.location.lat);
         $("#longitude-field").val(venue.location.lng);
+        $("#fs-image").val(showImage(venue));
       };
     })
+  }
+
+  function showImage(venue) {
+    var venue_id = venue.id;
+//
+    // var urlString = "https://api.foursquare.com/v2/venues"+ venue_id + "?oauth_token=DDYC0ZCT3TWGWDWCYVOL5S115ZLCLXK3EHCU1E5HUAVRWSCU&v=20130531";
+    // var photos = $.get(urlString, function(json) {
+    //   json.response.venue
+    // });
+
   }
 
   $("#find_me").click(function() {

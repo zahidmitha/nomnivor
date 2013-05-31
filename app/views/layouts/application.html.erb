@@ -8,6 +8,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body >
+<ul class="top-bar">
+  <li class="navigate"><a href="/" id="title"><span>Nomnivor</span></a></li>
+  <li class="navigate"><span><a role="button" id="find_me">Find Me</a></span></li>
+  <li class="navigate"><span><a href="#add-restaurant-modal" role="button" data-toggle="modal">Add Restaurant</a></span></li>
+</ul>
+
   <div id='map' ></div>
   <div class="container">
     <% if flash[:notice] %>
