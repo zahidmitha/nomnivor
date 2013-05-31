@@ -14,4 +14,12 @@ class Restaurant < ActiveRecord::Base
     eatery
   end
 
+  def self.find_by_diet_ids(*diet_ids)
+    Restaurant.includes(:diets).where("diets.id IN (#{diet_ids.join(',')})")
+  end
+
+  def as_json(options={})
+    super(options.merge(:include => :diets))
+  end
+
 end

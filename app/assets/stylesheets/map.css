@@ -22,3 +22,16 @@
 #map { position:absolute; top:0; bottom:0; width:100%; z-index: -1;}
 
 #add-restaurant-modal { top: 50%; height: 480; margin-top: -220px;}
+
+/*#remove {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    background: #fff;
+}
+#add {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background: #fff;
+}*/

@@ -14,5 +14,7 @@
 //= require jquery_ujs
 //= require mapbox
 //= require bootstrap
+//= require bootstrap-multiselect
+//= require underscore
 //= require_tree .
 
