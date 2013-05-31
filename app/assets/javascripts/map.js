@@ -28,6 +28,13 @@ $(document).ready(function() {
     return dietsString.substring(0, dietsString.lastIndexOf(', '));
   }
 
+  var options = {
+
+};
+var input = document.getElementById('search_term');
+autocomplete = new google.maps.places.Autocomplete(input, options);
+
+
   function getRestaurants() {
     $.ajax({
     type: "GET",
@@ -113,6 +120,7 @@ $(document).ready(function() {
     }
   });
 
+
   $(".navbar-search").submit(function(e) {
     e.preventDefault();
     $.ajax({
@@ -124,5 +132,17 @@ $(document).ready(function() {
         $(".hero-unit").hide('fast');
         }
     });
-  });
+  })
+
+
+  // var apikey = "AIzaSyBdyepsqToqMk8r0iLBj0efCFuDmYbk9a4"
+
+// var url = "https://maps.googleapis.com/maps/api/js?key="+apikey+"&sensor=SET_TO_TRUE_OR_FALSE"
+// $.get(url, function() {
+
+//   var input = document.getElementById('search_term');
+
+//   autocomplete = new google.maps.places.Autocomplete(input, options);
+
+
 });
