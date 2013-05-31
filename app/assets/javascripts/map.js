@@ -86,7 +86,12 @@ $(document).ready(function() {
 
 
 
-  $('#name_auto_complete').keyup(function() {callFoursquareForTypeahead()});
+  $('#name_auto_complete').keyup(function() {callFoursquareForTypeahead();
+  });
+
+  $('#name_auto_complete').blur(function() {
+    fillLatLng();
+  });
 
 
   function callFoursquareForTypeahead() {
@@ -100,7 +105,11 @@ $(document).ready(function() {
   }
 
   function venueNames() {
-    return _.map(venues, function(venue) { return venue.name + " (" + venue.location.address + ")" });
+    return _.map(venues, function(venue) { return displayName(venue) });
+  }
+
+  function displayName(venue) {
+    return venue.name + " (" + venue.location.address + ")"
   }
 
   function venuesFound(minivenues) {
@@ -114,6 +123,18 @@ $(document).ready(function() {
     });
   };
 
+  function fillLatLng() {
+    venueLatLng(venues);
+  }
+
+  function venueLatLng(venues) {
+    _.each(venues, function(venue){
+      if (displayName(venue) == $('#name_auto_complete').val()) {
+        $("#latitude-field").val(venue.location.lat);
+        $("#longitude-field").val(venue.location.lng);
+      };
+    })
+  }
 
   $("#find_me").click(function() {
     map.locate();
