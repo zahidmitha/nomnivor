@@ -18,7 +18,7 @@ $(document).ready(function() {
 
     var geoJson = [{
       type: 'Feature',
-      "geometry": { "type": "Point", "coordinates": [item.longitude, item.latitude]},
+      "geometry": { "type": "Point", "coordinates": [item.latitude, item.longitude]},
       "properties": {
       "url": "/",
       "title": item.name,
@@ -73,7 +73,7 @@ $(document).ready(function() {
     json_array = []
     $.each(array, function(index, element){
       var feature = {type: "Feature",
-        geometry: {type: "Point", coordinates: [element.latitude, element.longitude]},
+        geometry: {type: "Point", coordinates: [element.longitude, element.latitude]},
         properties: { "title": element.name, "description": element.description}}
         json_array.push(feature);
       });

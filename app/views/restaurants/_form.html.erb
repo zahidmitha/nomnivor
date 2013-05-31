@@ -10,11 +10,9 @@
   <%= f.label :description %>
   <%= f.text_field :description %></br>
 
-  <%= f.label :Latitude %>
-  <%= f.text_field :latitude, id: "latitude-field"%></br>
+  <%= f.hidden_field :latitude, id: "latitude-field"%></br>
 
-  <%= f.label :Longitude %>
-  <%= f.text_field :longitude, id: "longitude-field"%></br>
+  <%= f.hidden_field :longitude, id: "longitude-field"%></br>
 
   <%= render 'restaurants/diets' %>
 
