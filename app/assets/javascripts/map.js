@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   var venues = [];
   var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 16);
-
+// needs to change++++
   $.ajax({
     type: "GET",
     url: "/restaurants/",
@@ -41,6 +41,7 @@ $(document).ready(function() {
       });
     });
   }
+  // end of needs to change +++++
 // added from zahid
   var input = document.getElementById('search_term');
   autocomplete = new google.maps.places.Autocomplete(input);
@@ -50,9 +51,17 @@ $(document).ready(function() {
   var group = L.geoJson(null, {
     style: null,
     onEachFeature: function (feature, layer) {
-        layer.bindPopup("<p>"+"<strong>"+feature.properties.title+"</strong>"+"</p>" + "<p>"+feature.properties.description+"</p>");
+        layer.bindPopup("<p>"+"<strong>"+feature.properties.title+"</strong></p><p>"+feature.properties.description+"</p><p>"+ eachDietName(feature.properties.diets)+"</p>");
         }
     }).addTo(map);
+
+  function eachDietName(diets){
+    var dietsString = ''
+    $.each(diets, function(index, diet){
+         dietsString += diet.name + ', ';
+    });
+    return dietsString.substring(0, dietsString.lastIndexOf(', '));
+  }
 
 
   $(".diet-filter").submit(function(e){
@@ -69,14 +78,12 @@ $(document).ready(function() {
     });
   });
 
-
-
   function createGeoJsonCollection(array){
     json_array = []
     $.each(array, function(index, element){
       var feature = {type: "Feature",
         geometry: {type: "Point", coordinates: [element.longitude, element.latitude]},
-        properties: { "title": element.name, "description": element.description}}
+        properties: { "title": element.name, "description": element.description, "diets": element.diets}}
         json_array.push(feature);
       });
     return json_array;
