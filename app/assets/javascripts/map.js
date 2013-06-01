@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  $("#sidebar").hide();
+
   var venues = [];
   var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 16);
 // needs to change++++
@@ -13,6 +15,7 @@ $(document).ready(function() {
              group.addData(collection);
       ;}
   });
+
 
   function addMarker(item) {
 
@@ -64,7 +67,7 @@ $(document).ready(function() {
   }
 
 
-  $(".diet-filter").submit(function(e){
+  $(".diets-filter").submit(function(e){
     e.preventDefault();
     $.ajax({
       type: "GET",
@@ -149,6 +152,7 @@ $(document).ready(function() {
     });
     $(".hero-unit").hide('fast');
     map.center
+    $("#sidebar").show('slow');
   });
 
   function locate() {
@@ -160,25 +164,7 @@ $(document).ready(function() {
     $(".hero-unit").hide('fast');
   });
 
-  $('.multiselect').multiselect({
-    buttonClass: 'btn',
-    buttonWidth: 'auto',
-    buttonText: function(options) {
-      if (options.length == 0) {
-        return 'None selected <b class="caret"></b>';
-      }
-      else if (options.length > 6) {
-        return options.length + ' selected  <b class="caret"></b>';
-      }
-      else {
-        var selected = '';
-          options.each(function() {
-            selected += $(this).text() + ', ';
-          });
-        return selected.substr(0, selected.length -2) + '<b class="caret"></b>';
-      }
-    }
-  });
+
 
   $(".navbar-search").submit(function(e) {
     e.preventDefault();
@@ -187,8 +173,11 @@ $(document).ready(function() {
       url: "/locations/",
       data: {"address": $("#search_term").val()},
       success: function(data){
-        map.setView([data.latitude, data.longitude], 16);
+         map.setView([data.latitude, data.longitude], 16);
+
         $(".hero-unit").hide('fast');
+          $("#sidebar").show('slow');
+
         }
     });
   });

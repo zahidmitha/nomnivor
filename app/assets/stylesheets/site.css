@@ -29,4 +29,14 @@ body { margin:0; padding:0; }
 
 .hero-btn {
     margin-top: 40px;
+    clear: left;
+}
+
+#sidebar {
+    list-style: none;
+    height: 100%;
+    width: 150px;
+    float: left;
+    background-color: grey;
+    opacity: 0.95;
 }
