@@ -1,18 +1,31 @@
 $(document).ready(function() {
 
   var venues = [];
-  var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 16);
-// needs to change++++
+  var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 13);
+
+// add marker
+
   $.ajax({
     type: "GET",
     url: "/restaurants/",
     data: $(this).serialize(),
     success: function(data){
       var collection = createGeoJsonCollection(data);
-             group.clearLayers();
-             group.addData(collection);
+         group.clearLayers();
+         group.addData(collection);
       ;}
   });
+
+  function createGeoJsonCollection(array){
+    json_array = []
+    $.each(array, function(index, element){
+      var feature = {type: "Feature",
+        geometry: {type: "Point", coordinates: [element.longitude, element.latitude]},
+        properties: { "title": element.name, "description": element.description, "diets": element.diets}}
+        json_array.push(feature);
+      });
+    return json_array;
+  };
 
   function addMarker(item) {
 
@@ -30,30 +43,24 @@ $(document).ready(function() {
       this.eachLayer(function(marker) {
 
         var feature = marker.feature;
-        // Create custom popup content
         var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' + '<div>' + feature.properties.name + '</div>' + '</a>' + '<p>' +feature.properties.description + '</p>' + '<p>' + '<strong>' + 'Lat/Long:' + '</strong>' + " " + feature.geometry.coordinates + '</p>';
-        // http://leafletjs.com/reference.html#popup
-          marker.bindPopup(popupContent,{
-            closeButton: true,
-            minWidth: 320
-          });
-
+        marker.bindPopup(popupContent,{
+          closeButton: true,
+          minWidth: 320
+        });
       });
     });
   }
-  // end of needs to change +++++
-// added from zahid
-  var input = document.getElementById('search_term');
-  autocomplete = new google.maps.places.Autocomplete(input);
-//
 
+// add marker $$$$ end
+// show diets
 
   var group = L.geoJson(null, {
     style: null,
     onEachFeature: function (feature, layer) {
-        layer.bindPopup("<p>"+"<strong>"+feature.properties.title+"</strong></p><p>"+feature.properties.description+"</p><p>"+ eachDietName(feature.properties.diets)+"</p>");
-        }
-    }).addTo(map);
+      layer.bindPopup("<p>"+"<strong>"+feature.properties.title+"</strong></p><p>"+feature.properties.description+"</p><p>"+ eachDietName(feature.properties.diets)+"</p>");
+    }
+  }).addTo(map);
 
   function eachDietName(diets){
     var dietsString = ''
@@ -62,7 +69,6 @@ $(document).ready(function() {
     });
     return dietsString.substring(0, dietsString.lastIndexOf(', '));
   }
-
 
   $(".diet-filter").submit(function(e){
     e.preventDefault();
@@ -78,16 +84,8 @@ $(document).ready(function() {
     });
   });
 
-  function createGeoJsonCollection(array){
-    json_array = []
-    $.each(array, function(index, element){
-      var feature = {type: "Feature",
-        geometry: {type: "Point", coordinates: [element.longitude, element.latitude]},
-        properties: { "title": element.name, "description": element.description, "diets": element.diets}}
-        json_array.push(feature);
-      });
-    return json_array;
-  };
+// show diets $$$$ end
+// foursquare venues
 
   var clientid = "F2TFZIIG0IVCY4UU3XZPMMK0YG5XKL5LDPSGWO3KRZWUD2GT";
   var clientsec = "EKTERA4XDUW5M1WLU4NT2V3ARPAQTHL4P1AENIHIZ1ZJHDVJ";
@@ -98,7 +96,6 @@ $(document).ready(function() {
   $('#name_auto_complete').blur(function() {
     fillLatLng();
   });
-
 
   function callFoursquareForTypeahead() {
     $('#name_auto_complete').typeahead({
@@ -142,10 +139,13 @@ $(document).ready(function() {
     })
   }
 
+// foursquare venues $$$$ end
+// geolocation for find me
+
   $(".find_me").click(function() {
     map.locate();
     map.on('locationfound', function(e) {
-      map.setView(e.latlng, 16);
+      map.setView(e.latlng, 15);
     });
     $(".hero-unit").hide('fast');
     map.center
@@ -156,9 +156,18 @@ $(document).ready(function() {
     return String(current_latlng);
   };
 
+// geolocate for me $$$$ end
+// close hero unit
+
   $(".close").click(function() {
     $(".hero-unit").hide('fast');
   });
+
+// close hero unit $$$$ end
+// find location finder
+
+  var input = document.getElementById('search_term');
+    autocomplete = new google.maps.places.Autocomplete(input);
 
   $('.multiselect').multiselect({
     buttonClass: 'btn',
@@ -187,9 +196,11 @@ $(document).ready(function() {
       url: "/locations/",
       data: {"address": $("#search_term").val()},
       success: function(data){
-        map.setView([data.latitude, data.longitude], 16);
+        map.setView([data.latitude, data.longitude], 15);
         $(".hero-unit").hide('fast');
         }
     });
   });
+
+  // location finder $$$$ end
 });
