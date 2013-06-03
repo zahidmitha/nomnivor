@@ -1,18 +1,20 @@
 <div class="landing">
+  <span>
   <button class="close">&times;</button>
   <h1 class="logo">Nomnivor
     <%#= image_tag "logo_400.png", :id => "logo", :alt => "Nomnivor" %>
   </h1>
   <div id="tag-line">Find restaurants that match your diet. Eat better.
   </div>
+
   <div>
       <a role="button" class="btn btn-large find_me">Find Me</a>
       <form class="navbar-search">
-        <input type="text" class="search-query nav-search-field" method="get" placeholder="Example: Old Street, London" id="search_term">
+        <input type="text" class="nav-search-field" method="get" placeholder="Example: Old Street, London" id="search_term">
         <button type="submit" class="btn btn-large" id="geolocate">Find Location</button>
       </form>
   </div>
-  <!--
+
   <div id="myCarousel" class="carousel slide">
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active">
@@ -37,9 +39,9 @@
     <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;
     </a>
   </div>
-</div>
 
--->
+
+</div>
 
 <div id="add-restaurant-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">

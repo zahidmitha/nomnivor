@@ -1,6 +1,5 @@
 .landing  {
     text-align: center;
-    background-color: rgba(255,255,255,0.7);
     font-weight: 500;
     padding-left: 40px;
     padding-right: 40px;
@@ -12,11 +11,13 @@
     width: 600px;
     margin: -220px 0 0 -300px;
     height: 400px;
-    background-color: #eeeeee;
+    background-color: black;
+    opacity: 0.5;
     display: block;
     font-family: Arial, sans-serif;
     z-index: 10;
-    border-radius: 6px;
+    border-radius: 20px;
+
 }
 
 #tag-line {
