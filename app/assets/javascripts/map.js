@@ -2,8 +2,12 @@ $(document).ready(function() {
 
   $("#sidebar").hide();
 
+// display map
+
   var venues = [];
   var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 13);
+
+// display map $$$$ end
 
 // add marker
 
@@ -44,6 +48,8 @@ $(document).ready(function() {
     map.markerLayer.on('ready', function(e) {
       this.eachLayer(function(marker) {
 
+        // add popup content
+
         var feature = marker.feature;
         var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' + '<div>' + feature.properties.name + '</div>' + '</a>' + '<p>' +feature.properties.description + '</p>' + '<p>' + '<strong>' + 'Lat/Long:' + '</strong>' + " " + feature.geometry.coordinates + '</p>';
         marker.bindPopup(popupContent,{
@@ -53,6 +59,8 @@ $(document).ready(function() {
       });
     });
   }
+
+  // add popup content $$$$ end
 
 // add marker $$$$ end
 // show diets
@@ -72,6 +80,8 @@ $(document).ready(function() {
     return dietsString.substring(0, dietsString.lastIndexOf(', '));
   }
 
+  // filter diets
+
   $(".diets-filter").submit(function(e){
     e.preventDefault();
     $.ajax({
@@ -85,6 +95,8 @@ $(document).ready(function() {
         }
     });
   });
+
+  // end filter diets
 
 // show diets $$$$ end
 // foursquare venues
@@ -149,7 +161,7 @@ $(document).ready(function() {
     map.on('locationfound', function(e) {
       map.setView(e.latlng, 15);
     });
-    $(".hero-unit").hide('fast');
+    $(".landing").hide('fast');
     map.center
     $("#sidebar").show('slow');
   });
@@ -163,14 +175,18 @@ $(document).ready(function() {
 // close hero unit
 
   $(".close").click(function() {
-    $(".hero-unit").hide('fast');
+    $(".landing").hide('fast');
   });
 
 // close hero unit $$$$ end
 // find location finder
 
+
+  // Location find automcomplete using Google Maps API
   var input = document.getElementById('search_term');
     autocomplete = new google.maps.places.Autocomplete(input);
+
+  //Automcomplete using Gmaps $$$$ end
 
   $('.multiselect').multiselect({
     buttonClass: 'btn',
@@ -192,6 +208,8 @@ $(document).ready(function() {
     }
   });
 
+  // Actual search using geolocate GEM (see controller)
+
   $(".navbar-search").submit(function(e) {
     e.preventDefault();
     $.ajax({
@@ -200,7 +218,7 @@ $(document).ready(function() {
       data: {"address": $("#search_term").val()},
       success: function(data){
         map.setView([data.latitude, data.longitude], 15);
-        $(".hero-unit").hide('fast');
+        $(".landing").hide('fast');
           $("#sidebar").show('slow');
 
         }

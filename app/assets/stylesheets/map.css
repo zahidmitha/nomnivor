@@ -1,17 +1,22 @@
-.hero-unit  {
+.landing  {
     text-align: center;
     background-color: rgba(255,255,255,0.7);
     font-weight: 500;
-    border-radius: 20px;
-    padding: 20px;
-
-
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+    padding-top: 20px;
     position: absolute;
     left: 50%;
     top: 50%;
     width: 600px;
     margin: -220px 0 0 -300px;
     height: 400px;
+    background-color: #eeeeee;
+    display: block;
+    font-family: Arial, sans-serif;
+    z-index: 10;
+    border-radius: 6px;
 }
 
 #tag-line {
@@ -19,9 +24,19 @@
   font-size: 25px;
 }
 
-#map { position:absolute; top:0; bottom:0; width:100%; z-index: -1;}
+#map {
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+    z-index: 1;
+}
 
-#add-restaurant-modal { top: 50%; height: 480; margin-top: -220px;}
+#add-restaurant-modal {
+    top: 50%;
+    height: 480;
+    margin-top: -220px;
+    }
 
 .leaflet-top {
     padding-top: 40px;

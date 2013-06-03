@@ -1,20 +1,55 @@
-<div class="hero-unit">
+<div class="landing">
   <button class="close">&times;</button>
-  <h1 class="logo"><%= image_tag "logo_400.png", :id => "logo", :alt => "Nomnivor" %></h1>
-  <p id="tag-line">Find restaurants that match your diet. Eat better. </p>
-  <p>
-  <div class="hero-btn">
-  <a role="button" class="btn btn-primary btn-large find_me">Find Me</a></div>
-  <p><%= render "search" %></p>
-  </p>
+  <h1 class="logo">Nomnivor
+    <%#= image_tag "logo_400.png", :id => "logo", :alt => "Nomnivor" %>
+  </h1>
+  <div id="tag-line">Find restaurants that match your diet. Eat better.
+  </div>
+  <div>
+      <a role="button" class="btn btn-large find_me">Find Me</a>
+      <form class="navbar-search">
+        <input type="text" class="search-query nav-search-field" method="get" placeholder="Example: Old Street, London" id="search_term">
+        <button type="submit" class="btn btn-large" id="geolocate">Find Location</button>
+      </form>
+  </div>
+  <!--
+  <div id="myCarousel" class="carousel slide">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active">
+      </li>
+      <li data-target="#myCarousel" data-slide-to="1">
+      </li>
+      <li data-target="#myCarousel" data-slide-to="2">
+      </li>
+    </ol>
+
+    <div class="carousel-inner">
+      <div class="active item">…
+      </div>
+      <div class="item">…
+      </div>
+      <div class="item">…
+      </div>
+    </div>
+
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;
+    </a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;
+    </a>
+  </div>
 </div>
 
+-->
+
 <div id="add-restaurant-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
- <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-    <h3 id="myModalLabel">New Restaurant  </h3>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    </button>
+    <h3 id="myModalLabel">New Restaurant
+    </h3>
   </div>
   <div class="modal-body">
-    <p><%= render "restaurants/form" %></p>
+    <p><%= render "restaurants/form" %>
+    </p>
   </div>
 </div>
