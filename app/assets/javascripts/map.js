@@ -3,9 +3,53 @@ $(document).ready(function() {
   $("#sidebar").hide();
 
   var venues = [];
-  var map = L.mapbox.map('map', 'examples.map-20v6611k').setView([51.5, -0.08], 13);
+  createMap([51.5, -0.08],13);
 
-// add marker
+// create map
+
+  function createMap(ll, zoom) {
+    map = L.mapbox.map('map', 'examples.map-20v6611k').setView(ll, zoom);
+  }
+
+//create map $$$$ end
+// validation of restaurant form
+
+  $('#submit').click(function (e) {
+    if (nameValidation() == false ) {
+      e.preventDefault();
+      alert("Please enter a valid name");
+    }
+    else if (descriptionValidation() == false) {
+      e.preventDefault();
+      alert("Please enter a valid description");
+    }
+    else if (dietValidation() == false) {
+      e.preventDefault();
+      alert("Please select atleast one diet");
+    };
+  });
+
+  function nameValidation() {
+    if ( ($('#name_auto_complete').val().length) <= 3) {
+      return false;
+    }
+  }
+
+  function descriptionValidation() {
+      if ( ($('#description').val().length) <= 6) {
+        return false;
+      }
+    }
+
+  function dietValidation() {
+    var boxes = $(':checked');
+    if ( boxes.length == 0) {
+        return false;
+    }
+  }
+
+// validation of restaurant form $$$$ end
+// add markers and filter them
 
   $.ajax({
     type: "GET",
@@ -54,7 +98,7 @@ $(document).ready(function() {
     });
   }
 
-// add marker $$$$ end
+// add markers and filter them $$$$ end
 // show diets
 
   var group = L.geoJson(null, {
@@ -122,7 +166,7 @@ $(document).ready(function() {
   }
 
   function foursquareQuery(query) {
-    var urlString = "https://api.foursquare.com/v2/venues/suggestCompletion?ll="+locate()+"&client_id=" + clientid +"&client_secret="+clientsec;
+    var urlString = "https://api.foursquare.com/v2/venues/suggestCompletion?ll="+current_location()+"&client_id=" + clientid +"&client_secret="+clientsec +"&radius=1000";
     $.get(urlString, {query: $('#name_auto_complete').val()}, function(json) {
       venuesFound(json.response.minivenues)
     });
@@ -150,11 +194,10 @@ $(document).ready(function() {
       map.setView(e.latlng, 15);
     });
     $(".hero-unit").hide('fast');
-    map.center
     $("#sidebar").show('slow');
   });
 
-  function locate() {
+  function current_location() {
     var current_latlng = [map.getCenter().lat,map.getCenter().lng];
     return String(current_latlng);
   };
