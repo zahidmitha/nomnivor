@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
-  $("#sidebar").hide();
+  $("#sidebar").show();
 
 // display map
 
   var venues = [];
-  var map = L.mapbox.map('map', 'examples.map-4l7djmvo').setView([51.5, -0.08], 13);
+  // var map = L.mapbox.map('map', 'examples.map-4l7djmvo').setView([51.5, -0.08], 13);
 
 // b&w map: 4l7djmvo
 
