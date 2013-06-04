@@ -33,6 +33,9 @@ $(document).ready(function() {
     if ( ($('#name_auto_complete').val().length) <= 3) {
       return false;
     }
+    else if ($.isNumeric($('#latitude-field').val()) == false) {
+      return false;
+    }
   }
 
   function descriptionValidation() {
