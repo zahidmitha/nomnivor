@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Nomnivor</title>
-  <link href='http://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-   <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-</head>
+  <head>
+    <title>Nomnivor</title>
+    <link href='http://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+      <%= javascript_include_tag "application" %>
+      <%= csrf_meta_tags %>
+  </head>
 
-<body >
-  <ul class="top-bar">
-    <li class="navigate">
-      <a href="/" id="title">
-        <span class="icon_text">
-          Nomnivor
+  <body >
+    <ul class="top-bar">
+      <li class="navigate">
+        <a href="/" id="title">
+          <span class="icon_text">
+            Nomnivor
+          </span>
+        </a>
+      </li>
+      <li class="navigate">
+        <span>
+          <a role="button" class="find_me">Find me
+          </a>
         </span>
-      </a>
-    </li>
-    <li class="navigate">
-      <span>
-        <a role="button" class="find_me">Find me
-        </a>
-      </span>
-    </li>
-    <li class="navigate">
-      <span>
-        <a href="#add-restaurant-modal" role="button" data-toggle="modal">Add restaurant
-        </a>
-      </span>
-    </li>
-    <li class="navigate">
-        <form class="navbar-form">
-          <input type="text" class="span3 nav-search-field" placeholder="Example: Old Street, London">
-          <button type="submit" class="btn navbar-search-btn">Find location
-          </button>
-        </form>
-    </li>
-  </ul>
+      </li>
+      <li class="navigate">
+        <span>
+          <a href="#add-restaurant-modal" role="button" data-toggle="modal">Add restaurant
+          </a>
+        </span>
+      </li>
+      <li class="navigate">
+          <form class="navbar-form">
+            <input type="text" class="span3 nav-search-field" placeholder="Old Street, London">
+            <button type="submit" class="btn navbar-search-btn">Find location
+            </button>
+          </form>
+      </li>
+    </ul>
 
-  <div id='map' >
-      <% if flash[:notice] %>
-        <div class="alert alert-success">
-          <button type="button" class="close" data-dis  miss="alert" aria-hidden="true">×</button>
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
+    <div id='map' >
+        <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dis  miss="alert" aria-hidden="true">×</button>
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
 
-        <%= yield %>
-  </div>
-</body>
+          <%= yield %>
+    </div>
+  </body>
 </html>
