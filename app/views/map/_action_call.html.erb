@@ -1,19 +1,21 @@
 <div class="landing">
-  <span>
-  <button class="close">&times;</button>
-  <h1 class="logo">Nomnivor
+  <span class="headline_text">
+  <button class="close ">&times;</button>
+  <h1 class="logo headline_text">NOMNIVOR
     <%#= image_tag "logo_400.png", :id => "logo", :alt => "Nomnivor" %>
   </h1>
-  <div id="tag-line">Find restaurants that match your diet. Eat better.
+  <div id="tag-line">Find restaurants that match your diet.
   </div>
 
   <div>
-      <a role="button" class="btn btn-large find_me">Find Me</a>
-      <form class="navbar-search">
-        <input type="text" class="nav-search-field" method="get" placeholder="Example: Old Street, London" id="search_term">
-        <button type="submit" class="btn btn-large" id="geolocate">Find Location</button>
-      </form>
+    <button role="button" class="find_current_location" title="Find my location"></button>
+    <form class="navbar-search">
+      <input type="text" class="nav-search-field" method="get" placeholder="Old Street, London" id="search_term">
+      <button type="submit" class="btn btn-large find_button find_location_button" id="geolocate">Find location</button>
+    </form>
   </div>
+
+<!--
 
   <div id="myCarousel" class="carousel slide">
     <ol class="carousel-indicators">
@@ -40,7 +42,9 @@
     </a>
   </div>
 
+-->
 
+  </span>
 </div>
 
 <div id="add-restaurant-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

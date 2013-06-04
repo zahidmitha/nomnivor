@@ -37,7 +37,7 @@
 }*/
 
 .navigate a:hover {
-  color: whiteSmoke;
+  color: #1B968D;
   text-decoration: none;
   cursor: pointer;
 }
@@ -55,8 +55,25 @@
 }
 
 .navbar-search-btn {
-  font-size: 25px;
+   background-color: hsl(288, 63%, 28%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#af2fcf", endColorstr="#621a74");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#af2fcf), to(#621a74));
+  background-image: -moz-linear-gradient(top, #af2fcf, #621a74);
+  background-image: -ms-linear-gradient(top, #af2fcf, #621a74);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #af2fcf), color-stop(100%, #621a74));
+  background-image: -webkit-linear-gradient(top, #af2fcf, #621a74);
+  background-image: -o-linear-gradient(top, #af2fcf, #621a74);
+  background-image: linear-gradient(#af2fcf, #621a74);
+  border-color: #621a74 #621a74 hsl(288, 63%, 22.5%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.36);
+  -webkit-font-smoothing: antialiased;
+  font-size: 20px;
   font-weight: bold;
+  border-radius: 5px;
+
+}
 }
 
 .nav-search-field {
@@ -65,11 +82,10 @@
 
 }
 
-#tag-line {
-  margin-bottom: 35px;
+.icon_text {
+  color: #961B85;
+  font-weight: bold;
+  font-size: 25px;
 
 }
-
-
-
 
