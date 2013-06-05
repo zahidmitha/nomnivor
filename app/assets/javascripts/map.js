@@ -230,6 +230,9 @@ $(document).ready(function() {
   var input = document.getElementById('search_term');
     autocomplete = new google.maps.places.Autocomplete(input);
 
+   var input = document.getElementById('bar_search_term');
+    autocomplete = new google.maps.places.Autocomplete(input);
+
   //Automcomplete using Gmaps $$$$ end
 
   $('.multiselect').multiselect({
@@ -254,7 +257,22 @@ $(document).ready(function() {
 
   // Actual search using geolocate GEM (see controller)
 
-  $(".navbar-search").submit(function(e) {
+  $(".landing-search").submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "GET",
+      url: "/locations/",
+      data: {"address": $("#bar_search_term").val()},
+      success: function(data){
+        map.setView([data.latitude, data.longitude], 15);
+        $(".landing").hide('fast');
+          $("#sidebar").show('slow');
+
+        }
+    });
+  });
+
+  $(".navbar-form").submit(function(e) {
     e.preventDefault();
     $.ajax({
       type: "GET",

@@ -2,19 +2,6 @@
 
 <%= render "landing" %>
 
-<div id="sidebar">
-  <%= form_tag("/restaurants", :method => "get", :class => "diets-filter") do %>
-    <ul class="inline-checkboxes">
-
-     <% @diets.each do |diet| %>
-     <li>
-        <%= check_box_tag "diets[]", diet.id %><br/>
-        <%= label_tag "#{diet.name}" %>
-     </li>
-    <% end %>
-    </ul>
-  <%= submit_tag("Find restaurants") %>
-<% end %>
-</div>
+<%= render "restaurants/side_bar" %>
 
 

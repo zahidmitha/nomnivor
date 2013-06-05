@@ -42,10 +42,6 @@
   font: 900 25px "Arial", Helvetica, sans-serif;
 }
 
-#title {
-
-}
-
 .navbar-search-btn {
    background-color: #d43638;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eb5367), to(#d43638), color-stop(0.5, #e04751), color-stop(0.5, #de404a));
@@ -64,7 +60,6 @@
   display: inline-block;
   font-family: "helvetica neue",arial,sans-serif;
   font-weight: bold;
-  line-height: 1em;
   border-radius: 6px;
   font-size: 18px;
   font-size: 20px;
@@ -73,8 +68,8 @@
   font-size: 20px;
   font-weight: bold;
   border-radius: 5px;
+  padding: 7px 8px 7px 8px;
 
-}
 }
 
 .nav-search-field {
