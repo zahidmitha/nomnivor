@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $("#sidebar").hide();
+  $("#sidebar").show();
 
 // display map
 
