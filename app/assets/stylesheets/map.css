@@ -31,14 +31,16 @@
     top:0;
     bottom:0;
     width:100%;
-    z-index: 1;
+    z-index: -1;
 }
+
 
 #add-restaurant-modal {
     top: 50%;
     height: 480;
     margin-top: -220px;
-    }
+}
+
 
 .leaflet-top {
     padding-top: 40px;

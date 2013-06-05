@@ -8,9 +8,9 @@
   <%= f.text_field :name, id: "name_auto_complete", autocomplete: "off" %></br>
 
   <%= f.label :description %>
-  <%= f.text_field :description %></br>
+  <%= f.text_field :description, id: "description" %></br>
 
-  <%= f.hidden_field :latitude, id: "latitude-field"%></br>
+  <%= f.hidden_field :latitude, id: "latitude-field" %></br>
 
   <%= f.hidden_field :longitude, id: "longitude-field"%></br>
 
@@ -21,7 +21,7 @@
 </div>
 <div class="modal-footer">
    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-  <%= f.button :Add, :class => 'btn find_button' %>
+  <%= f.button :Submit, :class => 'btn find_button' , id: "submit" %>
 </div>
 <% end %>
 

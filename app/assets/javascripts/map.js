@@ -5,13 +5,57 @@ $(document).ready(function() {
 // display map
 
   var venues = [];
-  var map = L.mapbox.map('map', 'examples.map-4l7djmvo').setView([51.5, -0.08], 13);
 
+
+// create map
+  createMap([51.5, -0.08],13);
 // b&w map: 4l7djmvo
+  function createMap(ll, zoom) {
+    map = L.mapbox.map('map', 'examples.map-4l7djmvo').setView(ll, zoom);
+  }
 
-// display map $$$$ end
+//create map $$$$ end
+// validation of restaurant form
 
-// add marker
+  $('#submit').click(function (e) {
+    if (nameValidation() == false ) {
+      e.preventDefault();
+      alert("Please enter a valid name");
+    }
+    else if (descriptionValidation() == false) {
+      e.preventDefault();
+      alert("Please enter a valid description");
+    }
+    else if (dietValidation() == false) {
+      e.preventDefault();
+      alert("Please select atleast one diet");
+    };
+  });
+
+  function nameValidation() {
+    if ( ($('#name_auto_complete').val().length) <= 3) {
+      return false;
+    }
+    else if ($.isNumeric($('#latitude-field').val()) == false) {
+      return false;
+    }
+  }
+
+  function descriptionValidation() {
+      if ( ($('#description').val().length) <= 6) {
+        return false;
+      }
+    }
+
+  function dietValidation() {
+    var boxes = $(':checked');
+    if ( boxes.length == 0) {
+        return false;
+    }
+  }
+
+// validation of restaurant form $$$$ end
+// add markers and filter them
 
   $.ajax({
     type: "GET",
@@ -50,7 +94,8 @@ $(document).ready(function() {
     map.markerLayer.on('ready', function(e) {
       this.eachLayer(function(marker) {
 
-        // add popup content
+// add markers and filter them $$$$ end
+// add popup content
 
         var feature = marker.feature;
         var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' + '<div>' + feature.properties.name + '</div>' + '</a>' + '<p>' +feature.properties.description + '</p>' + '<p>' + '<strong>' + 'Lat/Long:' + '</strong>' + " " + feature.geometry.coordinates + '</p>';
@@ -62,9 +107,7 @@ $(document).ready(function() {
     });
   }
 
-  // add popup content $$$$ end
-
-// add marker $$$$ end
+// add popup content $$$$ end
 // show diets
 
   var group = L.geoJson(null, {
@@ -136,7 +179,7 @@ $(document).ready(function() {
   }
 
   function foursquareQuery(query) {
-    var urlString = "https://api.foursquare.com/v2/venues/suggestCompletion?ll="+locate()+"&client_id=" + clientid +"&client_secret="+clientsec;
+    var urlString = "https://api.foursquare.com/v2/venues/suggestCompletion?ll="+current_location()+"&client_id=" + clientid +"&client_secret="+clientsec +"&radius=1000";
     $.get(urlString, {query: $('#name_auto_complete').val()}, function(json) {
       venuesFound(json.response.minivenues)
     });
@@ -164,11 +207,10 @@ $(document).ready(function() {
       map.setView(e.latlng, 15);
     });
     $(".landing").hide('fast');
-    map.center
     $("#sidebar").show('slow');
   });
 
-  function locate() {
+  function current_location() {
     var current_latlng = [map.getCenter().lat,map.getCenter().lng];
     return String(current_latlng);
   };
