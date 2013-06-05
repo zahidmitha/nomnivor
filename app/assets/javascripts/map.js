@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $("#sidebar").show();
+  $("#sidebar").hide();
 
 // display map
 
@@ -220,6 +220,7 @@ $(document).ready(function() {
 
   $(".close").click(function() {
     $(".landing").hide('fast');
+    $("#sidebar").show('slow');
   });
 
 // close hero unit $$$$ end

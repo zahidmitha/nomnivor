@@ -9,8 +9,8 @@
     left: 50%;
     top: 50%;
     width: 600px;
-    margin: -220px 0 0 -300px;
-    height: 400px;
+    margin: -180px 0 0 -300px;
+    height: 250px;
     background-color: rgb(250, 247, 247);
     background-color: rgb(250, 247, 247);
     -moz-box-shadow: 0 5px 5px 0px #888;
@@ -50,7 +50,7 @@
 }
 
 .headline_text {
-    margin-top: 15%;
+    margin-top: 9%;
 }
 
 #tag-line {
@@ -110,8 +110,16 @@
     display: inline-block;
 }
 
+#bar_search_term {
+  padding: 14px 14px 14px 14px;
+  margin-bottom: 0;
+}
 
-.find_current_location {
+#search_term {
+  margin-bottom: 4px;
+}
+
+#find_current_location {
   background-color: none;
   color: #fff;
   border-radius: 5px;
@@ -121,7 +129,5 @@
   background-position:center;
   background-repeat:no-repeat;
   background-size:35px 35px;
-  float: left;
-
 }
 
