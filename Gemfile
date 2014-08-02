@@ -21,7 +21,7 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'debugger'
+  # gem 'debugger'
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'shoulda-matchers'
